@@ -1,0 +1,4 @@
+<mvc:View controllerName="com.tosyali.masterdetailZMT_MASTERD.controller.App" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
+	<SplitApp id="splitAppID"/>
+</mvc:View>

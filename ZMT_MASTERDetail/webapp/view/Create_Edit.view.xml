@@ -1,0 +1,57 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	controllerName="com.tosyali.masterdetailZMT_MASTERD.controller.Create_Edit" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout">
+	<App id="splitAppID">
+		<pages>
+			<Page title="Title">
+				<content>
+					<f:Form id="FormDisplay" editable="true" class="isReadonly">
+						<f:layout>
+							<f:ResponsiveGridLayout labelSpanL="4" labelSpanM="4" emptySpanL="4" emptySpanM="3" columnsL="4" columnsM="3"/>
+						</f:layout>
+						<f:formContainers>
+							<f:FormContainer id="formContainer">
+								<f:formElements id="formElements">
+									<f:FormElement label="ID">
+										<f:fields>
+											<Input id="idPernr" editable="false" enabled="false" type="Number" value="{Pernr}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="Adı">
+										<f:fields>
+											<Input id="idAdi" value="{Adi}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="Soyadı">
+										<f:fields>
+											<Input id="idSoyadi" value="{Soyadi}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="Departman">
+										<f:fields>
+											<Input id="idDepartman" value="{Departman}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="Doğum Tarihi">
+										<f:fields>
+											<DatePicker id="idDogT" value="{Dogumtarihi}" placeholder="Enter Date" change="handleChange" class="sapUiSmallMarginBottom"/>
+										</f:fields>
+									</f:FormElement>
+								</f:formElements>
+								<f:customData>
+									<core:CustomData key="w5g.dt.editable" value="false" id="__data7"/>
+								</f:customData>
+							</f:FormContainer>
+						</f:formContainers>
+					</f:Form>
+				</content>
+				<footer>
+					<Toolbar>
+						<ToolbarSpacer/>
+						<Button press="onPressKaydetGuncelle" text="{= ${appModel>/mode} === 'edit'? 'Update' : 'Save' }"/>
+					</Toolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

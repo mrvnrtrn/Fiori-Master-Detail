@@ -1,0 +1,33 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	controllerName="com.tosyali.masterdetailZMT_MASTERD.controller.Master" xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page title="PERSONEL">
+				<subHeader>
+					<Toolbar width="100%">
+						<SearchField width="100%" search="onSearch"/>
+					</Toolbar>
+				</subHeader>
+				<content>
+					<List id="idList" items="{/PerMasterSet}" growing="true" growingScrollToLoad="true" growingThreshold="15" updateFinished="onUpdateFinished">
+						<items>
+							<ObjectListItem type="Active" title="{Adi} - {Pernr}"
+								number="{path : 'Dogumtarihi', type : 'sap.ui.model.type.DateTime', formatOptions:{pattern: 'dd.MM.yyyy'}}" press="onSelectionChange">
+								<attributes>
+									<ObjectAttribute text="{Adi} - {Soyadi}"/>
+									<ObjectAttribute text="{Departman}"/>
+								</attributes>
+							</ObjectListItem>
+						</items>
+					</List>
+				</content>
+				<footer>
+					<Toolbar>
+						<ToolbarSpacer/>
+						<Button icon="sap-icon://add" press="onCreateGemiTanim"/>
+					</Toolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

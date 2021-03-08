@@ -1,0 +1,106 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	controllerName="com.tosyali.masterdetailZMT_MASTERD.controller.Detail" xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page title="Title" showNavButton="{device>/system/phone}" navButtonPress="onNavBack">
+				<content>
+					<ObjectHeader title="{Adi}" number="{Pernr}"
+						numberUnit="{path : 'Dogumtarihi', type : 'sap.ui.model.type.DateTime', formatOptions:{pattern: 'dd.MM.yyyy'}}">
+						<attributes>
+							<ObjectAttribute text="{Adi} - {Soyadi}"/>
+							<ObjectAttribute text="{Departman}"/>
+<!--							<ObjectAttribute text="Yeni Eğitim Ekle" active="true" press=".OnPressYeniEtEkle"/>
+							<ObjectAttribute text="Yeni İzin Ekle" active="true" press=".OnPressYeniIEkle"/>-->
+						</attributes>
+					</ObjectHeader>
+					<IconTabBar id="tab">
+						<items>
+							<IconTabFilter key="1" select="onSelectChanged" icon="sap-icon://begin" iconColor="Positive" text="Eğitimler">
+								<Table items="{PerEgtNav}">
+									<columns>
+										<Column>
+											<Text text="Egitim No"/>
+										</Column>
+										<Column>
+											<Text text="Egitim Adı"/>
+										</Column>
+										<Column>
+											<Text text="Egitim Tarihi"/>
+										</Column>
+										<Column>
+											<Text text="Egitim Suresi"/>
+										</Column>
+										<Column>
+											<Text text="Egitim Veren"/>
+										</Column>
+										<Column>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem type="Navigation">
+											<cells>
+												<HBox>
+													<Button icon="sap-icon://edit" type="Transparent" press="onEdit"/>
+													<Button icon="sap-icon://delete" type="Transparent" press="onDelete"/>
+												</HBox>
+												<Text text="{Egitimno}"/>
+												<Text text="{Egitimadi}"/>
+												<ObjectIdentifier title="{path : 'Dogumtarihi', type : 'sap.ui.model.type.DateTime', formatOptions:{pattern: 'dd.MM.yyyy'}}"
+													text="{Dogumtarihi}"/>
+												<Text text="{Egitimsuresi}"/>
+												<Text text="{Egitimveren}"/>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+							</IconTabFilter>
+							<IconTabFilter key="2" select="onSelectChanged" icon="sap-icon://begin" iconColor="Positive" text="İzinler">
+								<Table items="{PerIzinNav}">
+									<columns>
+										<Column>
+											<Text text="İzin Baş. Tarihi"/>
+										</Column>
+										<Column>
+											<Text text="İzin Bitiş Tarihi"/>
+										</Column>
+										<Column>
+											<Text text="İzin Günsayisi"/>
+										</Column>
+										<Column>
+											<Text text="İzin Türü"/>
+										</Column>
+										<Column></Column>
+									</columns>
+									<items>
+										<ColumnListItem type="Navigation">
+											<cells>
+												<HBox>
+													<Button icon="sap-icon://edit" type="Transparent" press="onEdit"/>
+													<Button icon="sap-icon://delete" type="Transparent" press="onDelete"/>
+												</HBox>
+												<Text text="{Izinbastarihi}"/>
+												<Text text="{Izinbittarihi}"/>
+												<ObjectIdentifier title="{path : 'Dogumtarihi', type : 'sap.ui.model.type.DateTime', formatOptions:{pattern: 'dd.MM.yyyy'}}"
+													text="{Dogumtarihi}"/>
+												<Text text="{Izingunsayisi}"/>
+												<Text text="{Izinturu}"/>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+							</IconTabFilter>
+						</items>
+					</IconTabBar>
+				</content>
+				<footer>
+					<Toolbar>
+						<ToolbarSpacer/>
+						<Button icon="sap-icon://add" press="OnPressYeniEtEkle"/>
+						<Button icon="sap-icon://delete" press="onDeleteGemiTanim"/>
+						<Button icon="sap-icon://edit" press="onEditGemiTanim"/>
+					</Toolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

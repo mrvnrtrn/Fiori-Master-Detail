@@ -1,0 +1,86 @@
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZPEREGITIM_SRV" xml:lang="tr" sap:schema-version="1">
+            <EntityType Name="PerMaster" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Pernr"/>
+                </Key>
+                <Property Name="Pernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Personel no." sap:updatable="false"/>
+                <Property Name="Adi" Type="Edm.String" MaxLength="50" sap:label="Adı"/>
+                <Property Name="Soyadi" Type="Edm.String" MaxLength="50" sap:label="Soyadı"/>
+                <Property Name="Departman" Type="Edm.String" MaxLength="20" sap:label="Department Adı"/>
+                <Property Name="Dogumtarihi" Type="Edm.DateTime" Precision="7" sap:label="Tarih"/>
+                <NavigationProperty Name="PerIzinNav" Relationship="ZPEREGITIM_SRV.PerIzn" FromRole="FromRole_PerIzn" ToRole="ToRole_PerIzn"/>
+                <NavigationProperty Name="PerEgtNav" Relationship="ZPEREGITIM_SRV.PerEgt" FromRole="FromRole_PerEgt" ToRole="ToRole_PerEgt"/>
+            </EntityType>
+            <EntityType Name="PerEgitim" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Pernr"/>
+                    <PropertyRef Name="Egitimno"/>
+                </Key>
+                <Property Name="Pernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Personel no." sap:updatable="false"/>
+                <Property Name="Egitimno" Type="Edm.Int32" Nullable="false" sap:label="Sayı" sap:updatable="false"/>
+                <Property Name="Egitimadi" Type="Edm.String" MaxLength="255" sap:label="Eğitim Adı"/>
+                <Property Name="Egitimtarihi" Type="Edm.DateTime" Precision="7" sap:label="Tarih"/>
+                <Property Name="Egitimsuresi" Type="Edm.Int32" sap:label="Kalan Gün"/>
+                <Property Name="Egitimveren" Type="Edm.String" MaxLength="100" sap:label="Eğtm Vrn Kişi/Krlş"/>
+            </EntityType>
+            <EntityType Name="PerIzin" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Pernr"/>
+                    <PropertyRef Name="Izinbastarihi"/>
+                </Key>
+                <Property Name="Pernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Personel no." sap:updatable="false"/>
+                <Property Name="Izinbastarihi" Type="Edm.DateTime" Nullable="false" Precision="7" sap:label="Tarih" sap:updatable="false"/>
+                <Property Name="Izinbittarihi" Type="Edm.DateTime" Precision="7" sap:label="Tarih"/>
+                <Property Name="Izingunsayisi" Type="Edm.Int32" sap:label="Sayı"/>
+                <Property Name="Izinturu" Type="Edm.String" MaxLength="20" sap:label="Alım Türü"/>
+            </EntityType>
+            <Association Name="PerIzn" sap:content-version="1">
+                <End Type="ZPEREGITIM_SRV.PerMaster" Multiplicity="1" Role="FromRole_PerIzn"/>
+                <End Type="ZPEREGITIM_SRV.PerIzin" Multiplicity="*" Role="ToRole_PerIzn"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_PerIzn">
+                        <PropertyRef Name="Pernr"/>
+                    </Principal>
+                    <Dependent Role="ToRole_PerIzn">
+                        <PropertyRef Name="Pernr"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="PerEgt" sap:content-version="1">
+                <End Type="ZPEREGITIM_SRV.PerMaster" Multiplicity="1" Role="FromRole_PerEgt"/>
+                <End Type="ZPEREGITIM_SRV.PerEgitim" Multiplicity="*" Role="ToRole_PerEgt"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_PerEgt">
+                        <PropertyRef Name="Pernr"/>
+                    </Principal>
+                    <Dependent Role="ToRole_PerEgt">
+                        <PropertyRef Name="Pernr"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZPEREGITIM_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="PerMasterSet" EntityType="ZPEREGITIM_SRV.PerMaster" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="PerEgitimSet" EntityType="ZPEREGITIM_SRV.PerEgitim" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="PerIzinSet" EntityType="ZPEREGITIM_SRV.PerIzin" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <AssociationSet Name="PerEgtSet" Association="ZPEREGITIM_SRV.PerEgt" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="PerMasterSet" Role="FromRole_PerEgt"/>
+                    <End EntitySet="PerEgitimSet" Role="ToRole_PerEgt"/>
+                </AssociationSet>
+                <AssociationSet Name="PerIznSet" Association="ZPEREGITIM_SRV.PerIzn" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="PerMasterSet" Role="FromRole_PerIzn"/>
+                    <End EntitySet="PerIzinSet" Role="ToRole_PerIzn"/>
+                </AssociationSet>
+            </EntityContainer>
+            <atom:link
+                xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZPEREGITIM_SRV/$metadata"/>
+                <atom:link
+                    xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZPEREGITIM_SRV/$metadata"/>
+                </Schema>
+            </edmx:DataServices>
+        </edmx:Edmx>

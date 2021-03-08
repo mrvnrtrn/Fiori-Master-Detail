@@ -1,0 +1,78 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Dialog title="İzin Ekle" id="ListDialog" afterClose="onAfterClose">
+		<ScrollContainer height="100%" width="100%" vertical="true" focusable="true">
+			<f:Form id="FormDisplay" editable="true" class="isReadonly">
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanL="4" labelSpanM="4" emptySpanL="4" emptySpanM="3" columnsL="4" columnsM="3"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer id="formContainer" expandable="true">
+						<f:formElements id="formElements">
+							<f:FormElement label="Personel Seç">
+								<f:fields>
+									<ComboBox id="idCb" items="{/PerMasterSet}">
+										<items>
+											<core:Item key="{Pernr}" text="{Pernr}-{Adi}"/>
+										</items>
+									</ComboBox>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="İ. Baş. Tarihi">
+								<f:fields>
+									<DatePicker id="idS" editable="false" enabled="false" value="{Izinbastarihi}" placeholder="Enter Date" change="handleChange" class="sapUiSmallMarginBottom"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="İ. Bit. Tarihi">
+								<f:fields>
+									<DatePicker id="idT" value="{Izinbittarihi}" placeholder="Enter Date" change="handleChange" class="sapUiSmallMarginBottom"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="İ.gün">
+								<f:fields>
+									<Input id="idA" value="{Izingunsayisi}" type="Text"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="İ.tür">
+								<f:fields>
+									<Input id="idV" value="{Izinturu}"/>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+		</ScrollContainer>
+		<beginButton>
+			<Button text="Save" press="onSave"/>
+		</beginButton>
+		<endButton>
+			<Button text="Close" press="onClose"/>
+		</endButton>
+	</Dialog>
+	<!-- <Dialog title="Şoför Yeni Kayıt" id="ListDialog" afterClose="onAfterClose">
+  <l:VerticalLayout class="sapUiContentPadding" width="700px">
+
+   <l:HorizontalLayout class="sapUiContentPadding">
+    <Label text="Şöfor Ad" labelFor="date" width="10em" />
+   	<Input id="idAd"  value="{Soforad}" type="Text"/>
+   </l:HorizontalLayout>
+   
+   <l:HorizontalLayout class="sapUiContentPadding">
+    <Label text="Şöfor Soyad" labelFor="date" width="10em" />
+   	<Input id="idSAd"  value="{Soyadi}" type="Text"/>
+   </l:HorizontalLayout>
+
+   <l:HorizontalLayout class="sapUiContentPadding">
+    <Label text="Şöfor TC Kimlik No" labelFor="time" width="10em" />
+   	<Input id="idTCKML"  value="{Tckml}" type="Number" maxLength="11"/>
+   </l:HorizontalLayout>
+  </l:VerticalLayout>
+  
+  <beginButton>
+   <Button text="Save" press="onSave" />
+  </beginButton>
+  <endButton>
+   <Button text="Close" press="onClose" />
+  </endButton>
+ </Dialog>-->
+</core:FragmentDefinition>
